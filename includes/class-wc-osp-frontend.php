@@ -37,7 +37,9 @@ class WC_OSP_Frontend {
      * @return string
      */
     function osp_shorter_title_home($title , $id ){
-        $the_product = wc_get_product( $id );
+        
+        $the_product  = wc_get_product( $id );
+        $parents_cats = '';
         
         // If  we don't have the context Product , or we  we stop here .
         if( ! $the_product ||  is_product()  ){
@@ -51,8 +53,48 @@ class WC_OSP_Frontend {
         if( $length_title >= 40 ) {
             $short_title = substr( $short_title, 0 , 40 ) . ' ...';            
         }
-        return $short_title;
+        
+        $parents_cats .= '<p class="product__categories">' . self::all_cat_classes ( $id ) . '</p>';
+        
+        return   $parents_cats. '<br>' .$short_title;
     }
+    
+
+    public static function get_parent_terms( $term ) {
+        
+        if ($term->parent > 0) {
+            $term = get_term_by( "id", $term->parent, "product_cat" );
+            if ( $term->parent > 0 ) {
+                get_parent_terms( $term );
+            } else return $term;
+        }
+        else return $term;
+    }
+    
+
+
+    /**
+     * Will return all categories of a product, including parent categories
+     * 
+     * @param object $product_id
+     * @return array $cats
+     */
+    public static function all_cat_classes( $product_id = '') {
+        
+        $cats = ""; 
+        $terms = get_the_terms( $product_id, "product_cat" );
+        $key = 0;
+
+        // foreach product_cat get main top product_cat
+        foreach ( $terms as $cat ) {
+            $cat   = self::get_parent_terms( $cat );
+            $cats .=  ( strpos( $cats, $cat->slug ) === false ? $cat->slug." " : "" );
+            $cats .= '<a href="'.esc_url( get_category_link( $cat ) ).'" title="'.  esc_attr( $cats  ).'" >' .esc_html($cat->name,'osp') .'</a>'; 
+            $key++;
+        }
+
+        return $cats;
+    }    
     /**
      * Display the product titles shorter in Cart and Checkout pages.
      * 
