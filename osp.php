@@ -315,3 +315,49 @@ function WC_OSP(){
 }
 
 WC_OSP();
+
+remove_action( 'woocommerce_shop_loop_item_title','woocommerce_template_loop_product_title', 10 );
+add_action('woocommerce_shop_loop_item_title', 'abChangeProductsTitle', 10 );
+function abChangeProductsTitle() {
+    
+    echo all_cat_classes(get_the_ID());
+    
+}
+
+
+     function get_parent_terms( $term ) {
+        
+        if ($term->parent > 0) {
+            $term = get_term_by( "id", $term->parent, "product_cat" );
+            if ( $term->parent > 0 ) {
+               get_parent_terms( $term );
+            } else return $term;
+        }
+        else return $term;
+    }
+    
+
+
+    /**
+     * Will return all categories of a product, including parent categories
+     * 
+     * @param object $product_id
+     * @return array $cats
+     */
+    function all_cat_classes( $product_id = '') {
+        
+        $cats = ""; 
+        $terms = get_the_terms( $product_id, "product_cat" );
+        $key = 0;
+
+        // foreach product_cat get main top product_cat
+        foreach ( $terms as $cat ) {
+            $cat   = get_parent_terms( $cat );
+            if (is_object($cat)){
+                $cats .= '<a href="'.esc_url( get_category_link( $cat->term_id ) ).'" title="'.  esc_attr( $cat->name  ).'" >' .esc_html( $cat->name ) .'</a>'; 
+            }
+            $key++;
+        }
+
+        return $cats;
+    } 
