@@ -323,28 +323,24 @@ function abChangeProductsTitle() {
     echo all_cat_classes(get_the_ID());
     
 }
-
-
-     function get_parent_terms( $term ) {
+function get_parent_terms( $term ) {
         
-        if ($term->parent > 0) {
-            $term = get_term_by( "id", $term->parent, "product_cat" );
+    if ($term->parent > 0) {
+        $term = get_term_by( "id", $term->parent, "product_cat" );
             if ( $term->parent > 0 ) {
                get_parent_terms( $term );
             } else return $term;
         }
-        else return $term;
-    }
+    else return $term;
+}
     
-
-
-    /**
+/**
      * Will return all categories of a product, including parent categories
      * 
      * @param object $product_id
      * @return array $cats
      */
-    function all_cat_classes( $product_id = '') {
+function all_cat_classes( $product_id = '') {
         
         $cats = ""; 
         $terms = get_the_terms( $product_id, "product_cat" );
@@ -361,3 +357,23 @@ function abChangeProductsTitle() {
 
         return $cats;
     } 
+    
+    
+    add_action('wp_head', function(){
+        
+        
+    // Get an instance of the WC_Geolocation object class
+    $geolocation_instance = new WC_Geolocation();
+    // Get user IP
+    $user_ip_address = $geolocation_instance->get_ip_address();
+    // Get geolocated user IP country code.
+    $user_geolocation = $geolocation_instance->geolocate_ip( $user_ip_address );
+    
+    var_dump($user_ip_address);
+    var_dump($user_geolocation['country']);
+
+//    return $user_geolocation['country'] === 'BE' ? true : false;
+
+    });
+    
+    require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-widget.php';
