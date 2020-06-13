@@ -9,7 +9,7 @@
     
     $('#osp-country-field-icon').on('click', function (){
         
-        $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 1000);
+        $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
     });
     
     $('#osp_country_field').on('change',function(){

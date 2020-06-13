@@ -3,6 +3,50 @@
     Author     : younes dro
 */
 
+.col-full.topbar-wrapper{
+	display: block!important;
+}
+.top-bar form#alg_currency_selector{
+padding: 10px;
+    margin: 0 auto;
+    /* border: 1px solid; */
+    width: 122px;
+	
+}
+.top-bar select{
+position: relative;
+    display: block;
+    height: 40px;
+    padding: 0 7px;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+body li.menu-item-product p.product__categories, body ul.products li.product p.product__categories{
+	display:none;
+}
+div.woocommerce-card__header > a{
+	border: 1px solid #e5e5e5;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 5px 10px;
+    background-color: #8b8b8b;
+    color: #fff;
+	margin-right: 4px;
+	font-size:12px;
+	position:relative;
+}
+div.woocommerce-card__header > a:hover{
+	background-color:rgb(221,24,0);
+}
+@media (min-width: 992px){
+	.top-bar form#alg_currency_selector{
+		margin: 0;
+		width:auto;
+	}
+}
+
+
 p.osp-country-field{
     opacity: 0
 }
