@@ -26,7 +26,7 @@ class WC_OSP_Frontend {
         add_filter( 'woocommerce_cart_item_name', array ( $this ,  'osp_shorter_title_cart' ), 10, 3 );
         add_filter( 'the_title', array ( $this ,  'osp_shorter_title_home' ), 10, 3 );
         add_filter('woocommerce_sale_flash',  array( $this, 'osp_hide_sale_flash' ) );
-        //add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
+        add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
     }
     
     /**
@@ -102,11 +102,17 @@ class WC_OSP_Frontend {
         
         // If  we don't have the context Product we stop here .
         if( ! $the_product ){
-            return;
+//            return;
         }
         // Make sure we are viewing a single product variable.
-        if( $the_product->is_type( 'variable' ) && is_product() ) {
-        }
+//        if( $the_product->is_type( 'variable' ) && is_product() ) {
+//        }
+        
+        wp_register_style( 'wc-osp-frontend', WC_OSP()->plugin_url() . '/assets/css/osp-frontend.css', array(), WC_OSP()->version );
+        wp_enqueue_style( 'wc-osp-frontend' );
+            
+        wp_register_script( 'wc-osp-js', WC_OSP()->plugin_url() . '/assets/js/osp-frontend.js', array( 'jquery' ), WC_OSP()->version, true );
+        wp_enqueue_script( 'wc-osp-js');        
 
     }
 }

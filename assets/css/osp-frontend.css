@@ -1,0 +1,19 @@
+/* 
+    Created on : 13 juin 2020, 00:59:17
+    Author     : younes dro
+*/
+
+p.osp-country-field{
+    opacity: 0
+}
+p.form-row.osp-country-field-show-hide{
+    opacity: 1; 
+}
+i.ops-show-hide-counrtries{
+cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+}
+

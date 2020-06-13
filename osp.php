@@ -359,21 +359,21 @@ function all_cat_classes( $product_id = '') {
     } 
     
     
-    add_action('wp_head', function(){
-        
-        
-    // Get an instance of the WC_Geolocation object class
-    $geolocation_instance = new WC_Geolocation();
-    // Get user IP
-    $user_ip_address = $geolocation_instance->get_ip_address();
-    // Get geolocated user IP country code.
-    $user_geolocation = $geolocation_instance->geolocate_ip( $user_ip_address );
-    
-    var_dump($user_ip_address);
-    var_dump($user_geolocation['country']);
-
-//    return $user_geolocation['country'] === 'BE' ? true : false;
-
-    });
+//    add_action('wp_head', function(){
+//        
+//        
+//    // Get an instance of the WC_Geolocation object class
+//    $geolocation_instance = new WC_Geolocation();
+//    // Get user IP
+//    $user_ip_address = $geolocation_instance->get_ip_address();
+//    // Get geolocated user IP country code.
+//    $user_geolocation = $geolocation_instance->geolocate_ip( $user_ip_address );
+//    
+////    var_dump($user_ip_address);
+////    var_dump($user_geolocation['country']);
+//
+////    return $user_geolocation['country'] === 'BE' ? true : false;
+//
+//    });
     
     require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-widget.php';
