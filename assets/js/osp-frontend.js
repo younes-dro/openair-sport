@@ -5,7 +5,7 @@
 ;
 (function($){
     
-    console.log('osp');
+    console.log( location.protocol + '//' + location.host + location.pathname );
     
     $('#osp-country-field-icon').on('click', function (){
         
@@ -24,11 +24,11 @@
     }else{
         var currency = 'USD';
     }
-    var url = window.location.href;    
+    var url = location.protocol + '//' + location.host + location.pathname ;    
     if (url.indexOf('?') > -1){
-   url += '&alg_currency=' + currency;
+   url += '&alg_currency=' + currency + '&country=' +country;
     }else{
-        url += '?alg_currency=' + currency;
+        url += '?alg_currency=' + currency + '&country=' +country;
     }
     window.location.href = url;
     });
