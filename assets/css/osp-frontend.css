@@ -10,10 +10,16 @@ p.form-row.osp-country-field-show-hide{
     opacity: 1; 
 }
 i.ops-show-hide-counrtries{
-cursor: pointer;
+    cursor: pointer;
     width: 40px;
     height: 40px;
     display: inline-block;
     line-height: 40px;
+    text-align: center;
+    color: rgba(221, 24, 0, 0.47);
+    font-size: 20px;
+}
+i.ops-show-hide-counrtries:hover{
+    color: rgb(221,24,0);    
 }
 

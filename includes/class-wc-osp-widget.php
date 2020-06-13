@@ -20,15 +20,18 @@ class OSP_WIDGET extends WP_Widget {
     }
 
     function widget($args, $instance) {
+        
         echo '<div class="top-bar-right osp-countries">';
         echo '<i id="osp-country-field-icon" class="ops-show-hide-counrtries ri ri-earth"></i>';
-    global $woocommerce;
+        global $woocommerce;
         $countries_obj   = new WC_Countries();
         $countries   = $countries_obj->__get('countries');
-                
+
         if ( isset( $_COOKIE['country_user'] ) ){
             $default_country = $_COOKIE['country_user'];
-        }else{
+        }else if(isset ( $_GET['country'] ) ){
+            $default_country = $_GET['country'];
+        } else{
             $default_country = $this->getUserGEO();
         }
 
@@ -61,19 +64,22 @@ class OSP_WIDGET extends WP_Widget {
     }
     
     public function set_ops_cookies(  ){
-              
-       if( isset( $_GET['country'])){
-           $c = $_GET['country'];
+       
+       if ( isset( $_GET['country'] ) ){
+           $c = $_GET['country'] ;
+       }
+       else if( isset( $_COOKIE['country_user'] ) ){
+           $c = $_COOKIE['country_user'];
        }else{
            $c = $this->getUserGEO();
        }
-        //if ( !isset ( $_COOKIE['country_user'] ) ){
-            setcookie( 'country_user', $c ,  time()+60*60*24*30 , '/' ); 
-        //}
-//        var_dump( $_GET['country'] );
+       setcookie( 'country_user', $c ,  time()+60*60*24*30 , '/' ); 
+       $_COOKIE['country_user'] = $c;
     }
     
     public function get_ops_cookies( ) {
+        if ( isset( $_COOKIE['country_user'] ) )
+            
         return $_COOKIE['country_user'];
     }
 
