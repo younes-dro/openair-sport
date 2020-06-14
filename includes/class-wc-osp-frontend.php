@@ -110,6 +110,9 @@ class WC_OSP_Frontend {
         
         wp_register_style( 'wc-osp-frontend', WC_OSP()->plugin_url() . '/assets/css/osp-frontend.css', array(), WC_OSP()->version );
         wp_enqueue_style( 'wc-osp-frontend' );
+
+        wp_register_style( 'wc-osp-flagicon', WC_OSP()->plugin_url() . '/assets/flag-icon/css/flag-icon.min.css', array(), WC_OSP()->version );
+        wp_enqueue_style( 'wc-osp-flagicon' );        
             
         wp_register_script( 'wc-osp-js', WC_OSP()->plugin_url() . '/assets/js/osp-frontend.js', array( 'jquery' ), WC_OSP()->version, true );
         wp_enqueue_script( 'wc-osp-js');        

@@ -21,8 +21,6 @@ class OSP_WIDGET extends WP_Widget {
 
     function widget($args, $instance) {
         
-        echo '<div class="top-bar-right osp-countries">';
-        echo '<i id="osp-country-field-icon" class="ops-show-hide-counrtries ri ri-earth"></i>';
         global $woocommerce;
         $countries_obj   = new WC_Countries();
         $countries   = $countries_obj->__get('countries');
@@ -35,6 +33,8 @@ class OSP_WIDGET extends WP_Widget {
             $default_country = $this->getUserGEO();
         }
 
+        echo '<div class="top-bar-right osp-countries">';
+                
         woocommerce_form_field('osp_country_field', array(
         'type'       => 'select',
         'class'      => array( 'osp-country-field' ),
@@ -45,7 +45,13 @@ class OSP_WIDGET extends WP_Widget {
         'options'    => $countries
         )
         );
+        
+        esc_html_e( 'Shipping to:' , 'ops' );
+        echo '<div id="osp-flag-wrapper" class="osp-flag-wrapper">';
+        echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
         echo '</div>';
+        
+        echo '</div>'; //.top-bar-right
       
     }
     public function getUserGEO() {

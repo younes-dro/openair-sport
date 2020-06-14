@@ -7,7 +7,7 @@
     
     console.log( location.protocol + '//' + location.host + location.pathname );
     
-    $('#osp-country-field-icon').on('click', function (){
+    $('#osp-flag-wrapper').on('click', function (){
         
         $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
     });

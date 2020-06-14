@@ -35,6 +35,7 @@ div.woocommerce-card__header > a{
 	margin-right: 4px;
 	font-size:12px;
 	position:relative;
+        margin-bottom: 4px; 
 }
 div.woocommerce-card__header > a:hover{
 	background-color:rgb(221,24,0);
@@ -60,10 +61,52 @@ i.ops-show-hide-counrtries{
     display: inline-block;
     line-height: 40px;
     text-align: center;
-    color: rgba(221, 24, 0, 0.47);
+    color: #3bb54a;
     font-size: 20px;
 }
 i.ops-show-hide-counrtries:hover{
     color: rgb(221,24,0);    
 }
-
+.osp-flag-wrapper {
+    width: 35px;
+    height:25px;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 2px #000;
+    overflow: hidden;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
+    
+}
+.osp-flag-wrapper:hover{
+    box-shadow: 0 0 2px #ddd;
+}
+.osp-flag-wrapper .osp-flag {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+.osp-flag-icon-background {
+    background-size: contain;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
+.osp-img-thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
