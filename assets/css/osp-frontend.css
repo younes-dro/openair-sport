@@ -67,22 +67,32 @@ i.ops-show-hide-counrtries{
 i.ops-show-hide-counrtries:hover{
     color: rgb(221,24,0);    
 }
-.osp-flag-wrapper {
+
+.osp-shipping{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding-left: 4px;    
+}
+.osp-shipping span{
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px    
+}
+.osp-shipping .osp-flag-wrapper {
     width: 35px;
-    height:25px;
+    height: 25px;
     display: inline-block;
     position: relative;
     box-shadow: 0 0 2px #000;
     overflow: hidden;
-    margin-bottom: 20px;
     cursor: pointer;
-    
-    
 }
-.osp-flag-wrapper:hover{
+.osp-shipping .osp-flag-wrapper:hover{
     box-shadow: 0 0 2px #ddd;
 }
-.osp-flag-wrapper .osp-flag {
+.osp-shipping .osp-flag-wrapper .osp-flag {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -92,12 +102,12 @@ i.ops-show-hide-counrtries:hover{
     height: 100%;
     background-size: cover;
 }
-.osp-flag-icon-background {
+.osp-shipping .osp-flag-icon-background {
     background-size: contain;
     background-position: 50%;
     background-repeat: no-repeat;
 }
-.osp-img-thumbnail {
+.osp-shipping .osp-img-thumbnail {
     display: inline-block;
     max-width: 100%;
     height: auto;

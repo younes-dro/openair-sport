@@ -34,7 +34,16 @@ class OSP_WIDGET extends WP_Widget {
         }
 
         echo '<div class="top-bar-right osp-countries">';
-                
+        
+        echo '<div class="osp-shipping">';
+        
+        echo '<span>' ; esc_html_e( 'Shipping to:' , 'ops' ); echo '</span>';
+        echo '<div id="osp-flag-wrapper" class="osp-flag-wrapper">';
+            echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
+        echo '</div>'; 
+        
+        echo '</div>';
+        
         woocommerce_form_field('osp_country_field', array(
         'type'       => 'select',
         'class'      => array( 'osp-country-field' ),
@@ -46,10 +55,6 @@ class OSP_WIDGET extends WP_Widget {
         )
         );
         
-        esc_html_e( 'Shipping to:' , 'ops' );
-        echo '<div id="osp-flag-wrapper" class="osp-flag-wrapper">';
-        echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
-        echo '</div>';
         
         echo '</div>'; //.top-bar-right
       
