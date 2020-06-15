@@ -27,6 +27,9 @@ class WC_OSP_Frontend {
         add_filter( 'the_title', array ( $this ,  'osp_shorter_title_home' ), 10, 3 );
         add_filter('woocommerce_sale_flash',  array( $this, 'osp_hide_sale_flash' ) );
         add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
+        add_filter( 'widget_categories_args' ,array ( $this, 'exclude_widget_categories' ) );
+        add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );
+        
     }
     
     /**
@@ -89,6 +92,34 @@ class WC_OSP_Frontend {
         return false;
         
     }
+    
+    /**
+     * Hide the WordPress default category .
+     * @param array $args
+     * @return array 
+     */
+    public function exclude_widget_categories( $args ){
+        
+        $exclude = "1,15";
+        $args["exclude"] = $exclude;
+        
+        return $args;
+    }
+    
+    /**
+     * Hide the WooCommerce default product category.
+     * 
+     * @param array $args
+     * @return array
+     */
+    public function custom_woocommerce_product_categories_widget_args( $args ) {
+        
+      $args['exclude'] = get_option( 'default_product_cat' );
+      
+      return $args;
+    }    
+    
+    
     /*-----------------------------------------------------------------------------------*/
     /*  Scripts and Styles                                                               */
     /*-----------------------------------------------------------------------------------*/
