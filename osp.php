@@ -44,6 +44,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-dependencies.php';
+require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-helper.php';
+require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-widget.php';
 require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-frontend.php';
 
 /**
@@ -358,5 +360,3 @@ function all_cat_classes( $product_id = '') {
         return $cats;
     } 
     
-    
-    require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-widget.php';

@@ -29,6 +29,7 @@ class WC_OSP_Frontend {
         add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
         add_filter( 'widget_categories_args' ,array ( $this, 'exclude_widget_categories' ) );
         add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );
+        add_filter( 'default_checkout_billing_country',  array ( $this , 'change_default_checkout_country' ) );        
         
     }
     
@@ -117,6 +118,16 @@ class WC_OSP_Frontend {
       $args['exclude'] = get_option( 'default_product_cat' );
       
       return $args;
+    }    
+    
+    public function change_default_checkout_country() {
+      
+        if ( isset( $_COOKIE['country_user'])) {
+            
+            return $_COOKIE['country_user'];
+        }
+        
+        return WC_OSP_Helper::getUserGEO();
     }    
     
     
