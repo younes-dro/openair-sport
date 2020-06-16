@@ -329,6 +329,12 @@ function get_parent_terms( $term ) {
         
     if ($term->parent > 0) {
         $term = get_term_by( "id", $term->parent, "product_cat" );
+//        echo '<pre>';
+//        var_dump($term);
+//        echo '</pre>';
+//        return $term;
+//        $term->term_id === 1946;
+//        return
             if ( $term->parent > 0 ) {
                get_parent_terms( $term );
             } else return $term;
@@ -359,4 +365,78 @@ function all_cat_classes( $product_id = '') {
 
         return $cats;
     } 
+//    add_action('init',function(){
+//    var_dump( WC_OSP_Helper::get_shipping_counry() );    
+//    var_dump( WC_OSP_Helper::get_billing_country() ); 
+//    
+//    });
+    
+//    add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+//    
+//    function custom_override_checkout_fields ( $fields  ) {
+//        
+//        echo "<pre>";
+//        print_r( $fields['shipping']['shipping_country'] );
+//        echo "</pre>";
+//    }
+    
+
+        add_action('wp' , function ()
+                {
+//global $product, $shipping_methods ;
+//        $product = wc_get_product(get_the_ID() );
+//        echo '<pre>';
+//        var_dump ($product);
+        
+ $ship_to = WC()->customer->get_shipping_country();
+//var_dump($country);
+
+$ext = new A2W_Woocommerce();
+$ext_id = $ext->get_product_external_id( get_the_ID() );
+
+$shipping_loader = new A2W_ShippingLoader();
+
+$shipping_data = $shipping_loader->load(new A2W_ShippingMeta( get_the_ID(), $ext_id, $ship_to, '', '', '' ) );
+
+$shipping_methods = $shipping_data['data']['ways'];
+
+if ( empty($shipping_methods)){
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' , 30 );
+
+
+
+//   remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+
+   remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+
+//   remove_action( 'woocommerce_grouped_add_to_cart', 'woocommerce_grouped_add_to_cart', 30 );
+
+   remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
+
+//   remove_action( 'woocommerce_external_add_to_cart', 'woocommerce_external_add_to_cart', 30 );
+
+   add_action( 'woocommerce_after_add_to_cart_form', 'add_content_after_addtocart' );
+   function add_content_after_addtocart(){
+       echo ' not shipping';
+   }
+}
+
+//echo count($shipping_methods);
+
+//var_dump($shipping_methods);
+
+//$customa2w = new A2W_ShippingFrontendPageController();
+
+//
+//$shipping_data = $customa2w->shipping_loader->load(new A2W_ShippingMeta(get_the_ID(), '', $country, '', '', ''));
+//
+//$shipping_methods = $shipping_data['data']['ways'];
+
+
+//    echo '</pre>';
+        });
+       
+        
+
+
     
