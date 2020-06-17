@@ -12,6 +12,16 @@ if (!defined('ABSPATH')) {
 
 class WC_OSP_Helper {
 
+    public static function get_shipping_counry() {
+       
+        return WC()->customer->get_shipping_country();
+    }
+    public static function set_shipping_counry ( $country = '') {
+        
+         WC()->customer->set_shipping_country( $country );        
+    
+        
+    }
     public static function getUserGEO() {
 
         // Get an instance of the WC_Geolocation object class

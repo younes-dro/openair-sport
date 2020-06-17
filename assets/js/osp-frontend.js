@@ -5,8 +5,9 @@
 ;
 (function($){
     
-    console.log( location.protocol + '//' + location.host + location.pathname );
-    
+//    console.log( location.protocol + '//' + location.host + location.pathname );
+//console.log(ops_scripts_vars.desable_form);
+//    var scripts_vars = ops_scripts_vars;
     $('#osp-flag-wrapper').on('click', function (){
         
         $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
@@ -33,6 +34,14 @@
     window.location.href = url;
     });
     
+//    $('body.single-product div.product form.cart').add
+if ( ops_scripts_vars && typeof ops_scripts_vars !== 'undefined' ){
+if ( ops_scripts_vars.desable_form == 1 ){
+        $('body.single-product div.product form.cart').addClass("desable_form_cart");
+        
+        $('body.single-product div.product form.cart').append('<div class="overlay_form_cart"><p>Sorry <br> this product cannot be delivered to your country</p></div>');
+}    
+} 
 })(jQuery);
 
 
