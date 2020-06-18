@@ -13,12 +13,14 @@ if (!defined('ABSPATH')) {
 class WC_OSP_Helper {
 
     public static function get_shipping_counry() {
+       global $woocommerce;
        
-        return WC()->customer->get_shipping_country();
+       return $woocommerce->customer->get_shipping_country();
     }
     public static function set_shipping_counry ( $country = '') {
+        global $woocommerce;
         
-         WC()->customer->set_shipping_country( $country );        
+        $woocommerce->customer->set_shipping_country( $country );        
     
         
     }
