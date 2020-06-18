@@ -76,16 +76,23 @@ class OSP_WIDGET extends WP_Widget {
     
     public function set_ops_cookies(  ){
        
-       if ( isset( $_GET['country'] ) ){
-           $c = $_GET['country'] ;
-       }
-       else if( isset( $_COOKIE['country_user'] ) ){
-           $c = $_COOKIE['country_user'];
-       }else{
-           $c = $this->getUserGEO();
-       }
-       setcookie( 'country_user', $c ,  time()+60*60*24*30 , '/' ); 
-       $_COOKIE['country_user'] = $c;
+        if ( !is_admin()){
+            if( WC_OSP_Helper::get_shipping_counry() ){
+                $c = WC_OSP_Helper::get_shipping_counry();
+            }
+            if ( isset( $_GET['country'] ) ){
+                $c = $_GET['country'] ;
+            }
+            else if( isset( $_COOKIE['country_user'] ) ){
+                $c = $_COOKIE['country_user'];
+            }else{
+                $c = $this->getUserGEO();
+            }
+            setcookie( 'country_user', $c ,  time()+60*60*24*30 , '/' ); 
+            $_COOKIE['country_user'] = $c;
+            // Update the customer shipping country 
+            WC_OSP_Helper::set_shipping_counry( $c );            
+        }
     }
     
     public function get_ops_cookies( ) {
