@@ -8,12 +8,27 @@
 //    console.log( location.protocol + '//' + location.host + location.pathname );
 //console.log(ops_scripts_vars.desable_form);
 //    var scripts_vars = ops_scripts_vars;
+function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var baseUrl = "https://openair-sport.com/wp-content/plugins/osp/assets/flag-icon/flags/1x1";
+  var $state = $(
+    '<span><img src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.svg" class="osp-img-flag" /> ' + state.text + '</span>'
+  );
+  return $state;
+};
+$(document).ready(function(){
+   $('select.osp-country-field').select2({
+       templateResult: formatState
+   }); 
+});   
     $('#osp-flag-wrapper').on('click', function (){
         
         $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
     });
     
-    $('#osp_country_field').on('change',function(){
+    $('#osp-country-field').on('change',function(){
     
     var country = this.value;
     var europe = 'AD,AT,BE,CY,EE,FI,FR,GF,TF,DE,GR,GP,IE,IT,LV,LT,LU,MT,MQ,YT,MC,ME,NL,PT,RE,PM,SM,SK,SI,ES';
@@ -65,5 +80,3 @@
     });
     
 })(jQuery);
-
-
