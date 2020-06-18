@@ -30,7 +30,7 @@ class WC_OSP_Frontend {
         add_filter('woocommerce_sale_flash',  array( $this, 'osp_hide_sale_flash' ) );
         add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
         add_filter( 'widget_categories_args' ,array ( $this, 'exclude_widget_categories' ) );
-        add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );      
+        add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );
         
     }
     
@@ -166,6 +166,11 @@ class WC_OSP_Frontend {
         
         if ( self::$desable_form_product ){
             wp_localize_script( 'wc-osp-js', 'ops_scripts_vars', array( 'desable_form' => true ) );
+        }
+        
+        if(is_page( 'contact-us' ) || is_page( 'customer-help' )){
+            wp_register_script( 'wc-osp-accordion', WC_OSP()->plugin_url() . '/assets/js/osp-accordion.js', array( 'jquery' ), WC_OSP()->version, true );
+            wp_enqueue_script( 'wc-osp-accordion' );             
         }
 
     }
