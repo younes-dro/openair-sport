@@ -43,20 +43,16 @@ class OSP_WIDGET extends WP_Widget {
         echo '</div>'; 
         
         echo '</div>';
-        
-        woocommerce_form_field('osp_country_field', array(
-        'type'       => 'select',
-        'class'      => array( 'osp-country-field' ),
-        'label'      => '',
-        'placeholder'    => __('Enter your country'),
-        'autocomplete' => true,
-        'default' => $default_country,
-        'options'    => $countries
-        )
-        );
-        
+
+        echo '<select id="osp-country-field" class="osp-country-field">';
+        foreach ($countries as $code => $country){
+            $selected = ( $code === $default_country) ? 'selected="selected"' : '';
+            echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
+        }
+        echo '</select>';
         
         echo '</div>'; //.top-bar-right
+        
       
     }
     public function getUserGEO() {
