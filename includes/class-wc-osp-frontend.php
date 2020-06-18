@@ -151,12 +151,18 @@ class WC_OSP_Frontend {
                 
         wp_register_style( 'wc-osp-frontend', WC_OSP()->plugin_url() . '/assets/css/osp-frontend.css', array(), WC_OSP()->version );
         wp_enqueue_style( 'wc-osp-frontend' );
+        
+        wp_register_style( 'wc-osp-selec2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css', array( 'wc-osp-frontend' ), WC_OSP()->version );
+        wp_enqueue_style( 'wc-osp-selec2' );        
 
         wp_register_style( 'wc-osp-flagicon', WC_OSP()->plugin_url() . '/assets/flag-icon/css/flag-icon.min.css', array(), WC_OSP()->version );
         wp_enqueue_style( 'wc-osp-flagicon' );        
             
         wp_register_script( 'wc-osp-js', WC_OSP()->plugin_url() . '/assets/js/osp-frontend.js', array( 'jquery' ), WC_OSP()->version, true );
-        wp_enqueue_script( 'wc-osp-js');  
+        wp_enqueue_script( 'wc-osp-js' );
+        
+        wp_register_script( 'wc-osp-select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array( 'jquery' , 'wc-osp-js' ), WC_OSP()->version, true );
+        wp_enqueue_script( 'wc-osp-select2-js' );
         
         if ( self::$desable_form_product ){
             wp_localize_script( 'wc-osp-js', 'ops_scripts_vars', array( 'desable_form' => true ) );
