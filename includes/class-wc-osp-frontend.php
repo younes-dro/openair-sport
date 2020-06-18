@@ -161,7 +161,7 @@ class WC_OSP_Frontend {
         wp_register_script( 'wc-osp-js', WC_OSP()->plugin_url() . '/assets/js/osp-frontend.js', array( 'jquery' ), WC_OSP()->version, true );
         wp_enqueue_script( 'wc-osp-js' );
         
-        wp_register_script( 'wc-osp-select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array( 'jquery' , 'wc-osp-js' ), WC_OSP()->version, true );
+        wp_register_script( 'wc-osp-select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js', array( 'jquery' ), WC_OSP()->version, true );
         wp_enqueue_script( 'wc-osp-select2-js' );
         
         if ( self::$desable_form_product ){
