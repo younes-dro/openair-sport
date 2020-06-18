@@ -42,14 +42,16 @@ class OSP_WIDGET extends WP_Widget {
             echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
         echo '</div>'; 
         
-        echo '</div>';
+        echo '</div>';//.osp-shipping
 
+        echo '<div class="osp-contries-wrapper">';
         echo '<select id="osp-country-field" class="osp-country-field">';
         foreach ($countries as $code => $country){
             $selected = ( $code === $default_country) ? 'selected="selected"' : '';
             echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
         }
         echo '</select>';
+        echo '</div>'; //.osp-contrey-wrapper
         
         echo '</div>'; //.top-bar-right
         

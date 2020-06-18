@@ -48,6 +48,12 @@ div.woocommerce-card__header > a:hover{
 	}
 }
 
+div.top-bar-right.osp-countries{
+    display: flex;
+}
+div.osp-contries-wrapper{
+    
+}
 
 p.osp-country-field{
     opacity: 0
