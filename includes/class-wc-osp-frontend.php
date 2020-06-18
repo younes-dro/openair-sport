@@ -24,17 +24,19 @@ class WC_OSP_Frontend {
 
     function __construct() {
         
-//        add_action('init',  array( $this , 'shorter_title' ));
         add_action('wp_head' , array ( $this , 'osp_google_analytics') );
         add_filter( 'woocommerce_cart_item_name', array ( $this ,  'osp_shorter_title_cart' ), 10, 3 );
         add_filter( 'the_title', array ( $this ,  'osp_shorter_title_home' ), 10, 3 );
         add_filter('woocommerce_sale_flash',  array( $this, 'osp_hide_sale_flash' ) );
         add_action( 'wp_enqueue_scripts', array ( $this , 'frontend_scripts' ) );
         add_filter( 'widget_categories_args' ,array ( $this, 'exclude_widget_categories' ) );
-        add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );
-//        add_filter( 'default_checkout_billing_country',  array ( $this , 'change_default_checkout_country' ) );        
+        add_filter( 'woocommerce_product_categories_widget_args', array ( $this , 'custom_woocommerce_product_categories_widget_args' ) );      
         
     }
+    
+    /**
+     * Display google analytics .
+     */
     public function osp_google_analytics (){
         
         $key = " <!-- Global site tag (gtag.js) - Google Analytics --><script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-169940218-1\"> </script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-169940218-1'); </script>";
@@ -102,7 +104,7 @@ class WC_OSP_Frontend {
     }
     
     /**
-     * Hide the WordPress default category .
+     * Hide the WordPress default category from widget.
      * @param array $args
      * @return array 
      */
@@ -143,20 +145,10 @@ class WC_OSP_Frontend {
     /*-----------------------------------------------------------------------------------*/
 
     /**
-     * Load scripts only in Single Product Variable Type.
+     * Load scripts.
      */ 
     public function frontend_scripts(){
-        
-        $the_product = wc_get_product( get_the_ID() );
-        
-        // If  we don't have the context Product we stop here .
-        if( ! $the_product ){
-//            return;
-        }
-        // Make sure we are viewing a single product variable.
-//        if( $the_product->is_type( 'variable' ) && is_product() ) {
-//        }
-        
+                
         wp_register_style( 'wc-osp-frontend', WC_OSP()->plugin_url() . '/assets/css/osp-frontend.css', array(), WC_OSP()->version );
         wp_enqueue_style( 'wc-osp-frontend' );
 
