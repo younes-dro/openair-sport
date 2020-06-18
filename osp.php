@@ -327,7 +327,7 @@ function abChangeProductsTitle() {
 }
 function get_parent_terms( $term ) {
         
-    if ($term->parent > 0) {
+    if ($term->parent && $term->parent != 1946) {
         $term = get_term_by( "id", $term->parent, "product_cat" );
 //        echo '<pre>';
 //        var_dump($term);
