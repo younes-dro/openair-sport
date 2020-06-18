@@ -37,9 +37,10 @@
 
     if ( window.ops_scripts_vars && typeof ops_scripts_vars !== 'undefined' ){
         if ( ops_scripts_vars.desable_form == 1 ){
-                $('body.single-product div.product form.cart').addClass("desable_form_cart");
-
-                $('body.single-product div.product form.cart').append('<div class="overlay_form_cart"><p>Sorry <br> this product cannot be delivered to your country</p></div>');
+            
+            $('body.single-product div.product form.cart').addClass("desable_form_cart");
+            $('body.single-product div.product form.cart').append('<div class="overlay_form_cart"><p>Sorry <br> this product cannot be delivered to your country</p></div>');    
+            $('button.single_add_to_cart_button').addClass('disabled');    
         }
     } 
     $( document ).ajaxComplete(function( event, xhr, settings ) {
@@ -47,6 +48,9 @@
             var ops_data  = JSON.parse(  xhr.responseText) ;
             if ( !ops_data.max_qty > 0){
                 $('button.single_add_to_cart_button').addClass('disabled');
+                if ( $('div.woocommerce-variation-availability') ){
+                 $('div.woocommerce-variation-availability').html('<p class="stock out-of-stock">Out of Stock</p>');
+                }
             }
         }
     });
