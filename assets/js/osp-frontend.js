@@ -54,6 +54,16 @@
             }
         }
     });
+    //Keep ALi2Woo shipping sybmbol
+    $( document ).ajaxComplete(function( event , xhr, settings ){
+        $('div.a2w_to_shipping').find('select option').each( function(){
+            var s = $(this).text();
+            
+            var st = s.replace( /,\s(\d+).\d{2}\s(\$|€|£)/ ,'') ;
+            $(this).text(st);
+        } );    
+    });
+    
 })(jQuery);
 
 
