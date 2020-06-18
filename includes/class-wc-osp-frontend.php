@@ -25,6 +25,7 @@ class WC_OSP_Frontend {
     function __construct() {
         
 //        add_action('init',  array( $this , 'shorter_title' ));
+        add_action('wp_head' , array ( $this , 'osp_google_analytics') );
         add_filter( 'woocommerce_cart_item_name', array ( $this ,  'osp_shorter_title_cart' ), 10, 3 );
         add_filter( 'the_title', array ( $this ,  'osp_shorter_title_home' ), 10, 3 );
         add_filter('woocommerce_sale_flash',  array( $this, 'osp_hide_sale_flash' ) );
@@ -34,7 +35,11 @@ class WC_OSP_Frontend {
 //        add_filter( 'default_checkout_billing_country',  array ( $this , 'change_default_checkout_country' ) );        
         
     }
-    
+    public function osp_google_analytics (){
+        
+        $key = " <!-- Global site tag (gtag.js) - Google Analytics --><script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-169940218-1\"> </script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-169940218-1'); </script>";
+        echo $key;
+    }
     /**
      * Display the product titles shorter in all store except the single product page.
      * 
