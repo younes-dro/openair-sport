@@ -422,3 +422,15 @@ function ops_hide_add_to_cart(){
 //    echo "<h1>{$converted_price}</h1>";
 //    echo "<h1>{$converted_price_formatted}</h1>";
 //});
+
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'osp_add_0_to_shipping_label', 10, 2 );
+   
+function osp_add_0_to_shipping_label( $label, $method ) {
+ 
+    if ( ! ( $method->cost > 0 ) ) {
+        $label .= ': ' . wc_price(0);
+    }
+    
+    return $label;
+ 
+}
