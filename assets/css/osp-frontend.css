@@ -132,13 +132,10 @@ body.single-product div.product form.cart.desable_form_cart div.overlay_form_car
     background-color: rgba(255, 255, 255, 0.89);
     top: 0;
     left: 0;   
-    display:table;
 }
 body.single-product div.product form.cart.desable_form_cart div.overlay_form_cart p{
     font-weight: bold;
     color: #db2041;
-    display: table-cell;
-    vertical-align: middle;
     font-family: serif;
     text-align: center;   
 }
