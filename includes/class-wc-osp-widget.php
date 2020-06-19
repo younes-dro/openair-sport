@@ -7,8 +7,8 @@ class OSP_WIDGET extends WP_Widget {
     function __construct() {
 
         $params = array(
-            'description' => ' Test Country / Currency ',
-            'name' => 'Openair Sport'
+            'description' => 'Display List of countries',
+            'name' => 'Openair Sport : Countries'
         );
         add_action('init', array( $this , 'set_ops_cookies') );
         parent::__construct('osp_widget', '', $params);
