@@ -37,7 +37,7 @@ class OSP_WIDGET extends WP_Widget {
         
         echo '<div class="osp-shipping">';
         
-        echo '<span>' ; esc_html_e( 'Shipping to:' , 'ops' ); echo '</span>';
+        echo '<span>' ; esc_html_e( 'Ship to ' , 'ops' ); echo '</span>';
         echo '<div id="osp-flag-wrapper" class="osp-flag-wrapper">';
             echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
         echo '</div>'; 
