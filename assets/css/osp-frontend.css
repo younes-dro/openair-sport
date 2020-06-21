@@ -4,9 +4,24 @@
 */
 
 
-.col-full.topbar-wrapper{
-	display: block!important;
+
+a:hover, a:active, a:focus {
+  outline: 0;
 }
+
+/******************************************************************************/
+
+/**
+* Currency Switcher
+*/
+div.mobile-extra div.alg_widget_currency_switcher {
+    text-align: center;
+    margin-top: 11px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: left;
+}
+
 .top-bar form#alg_currency_selector{
 padding: 10px;
     margin: 0 auto;
@@ -22,6 +37,7 @@ position: relative;
     border: 1px solid #d6d6d6;
     border-radius: 4px;
     -webkit-border-radius: 4px;
+    background-color: #fff!important;
 }
 body li.menu-item-product p.product__categories, body ul.products li.product p.product__categories{
 	display:none;
@@ -48,15 +64,12 @@ div.woocommerce-card__header > a:hover{
 	}
 }
 
-div.top-bar-right.osp-countries{
-    display: flex;
-}
-div.osp-contries-wrapper{
-    
-}
 
-p.osp-country-field{
-    opacity: 0
+div.mobile-extra div.alg_widget_currency_switcher #alg_currency_selector{
+    margin-bottom: 0px;
+}
+div.osp-contries-wrapper span.select2.select2-container span.select2-results ul{
+    font-size: 1em;
 }
 p.form-row.osp-country-field-show-hide{
     opacity: 1; 
@@ -74,64 +87,16 @@ i.ops-show-hide-counrtries{
 i.ops-show-hide-counrtries:hover{
     color: rgb(221,24,0);    
 }
+    
+    div.top-bar-right.alg_widget_currency_switcher{
+        display: none;
+    }
+@media screen and (min-width: 894px){
+    div.top-bar-right.alg_widget_currency_switcher{
+        display: flex;
+    }
+}
 
-.osp-shipping{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 120px;
-    padding-left: 4px;    
-}
-.osp-shipping span{
-    font-size: 12px;
-    font-weight: 600;
-    margin-right: 6px    
-}
-.osp-shipping .osp-flag-wrapper {
-    width: 35px;
-    height: 25px;
-    display: inline-block;
-    position: relative;
-    box-shadow: 0 0 2px #000;
-    overflow: hidden;
-    cursor: pointer;
-}
-.osp-shipping .osp-flag-wrapper:hover{
-    box-shadow: 0 0 2px #ddd;
-}
-.osp-shipping .osp-flag-wrapper .osp-flag {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-}
-.osp-shipping .osp-flag-icon-background {
-    background-size: contain;
-    background-position: 50%;
-    background-repeat: no-repeat;
-}
-.osp-shipping .osp-img-thumbnail {
-    display: inline-block;
-    max-width: 100%;
-    height: auto;
-    padding: 4px;
-    line-height: 1.42857143;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-}
-.osp-img-flag{
-    display: inline;
-    max-width: 40px;
-    height: 14px;    
-}
 body.single-product div.product form.cart.desable_form_cart{
     position: relative;
 } 

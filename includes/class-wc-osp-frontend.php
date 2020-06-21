@@ -156,7 +156,12 @@ class WC_OSP_Frontend {
         wp_enqueue_style( 'wc-osp-selec2' );        
 
         wp_register_style( 'wc-osp-flagicon', WC_OSP()->plugin_url() . '/assets/flag-icon/css/flag-icon.min.css', array(), WC_OSP()->version );
-        wp_enqueue_style( 'wc-osp-flagicon' );        
+        wp_enqueue_style( 'wc-osp-flagicon' );
+        
+        wp_register_style( 'osp-widget-couontries', WC_OSP()->plugin_url() . '/assets/css/osp-widget-couontries.css', array(), WC_OSP()->version );
+        wp_enqueue_style( 'osp-widget-couontries' );
+        
+        wp_enqueue_style( 'ionicons', 'http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' ,array(), WC_OSP()->version );        
             
         wp_register_script( 'wc-osp-js', WC_OSP()->plugin_url() . '/assets/js/osp-frontend.js', array( 'jquery' ), WC_OSP()->version, true );
         wp_enqueue_script( 'wc-osp-js' );

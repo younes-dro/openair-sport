@@ -34,25 +34,30 @@ class OSP_WIDGET extends WP_Widget {
         }
 
         echo '<div class="top-bar-right osp-countries">';
-        
-        echo '<div class="osp-shipping">';
-        
-        echo '<span>' ; esc_html_e( 'Ship to ' , 'ops' ); echo '</span>';
-        echo '<div id="osp-flag-wrapper" class="osp-flag-wrapper">';
-            echo '<div class="osp-img-thumbnail flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'"></div>';
-        echo '</div>'; 
-        
-        echo '</div>';//.osp-shipping
+            echo '<div class="osp-shipping">';
+            
+            echo '<a href="javascript:void(0)" class="switcher-info">';
+                echo '<span class="ship-to">' ; esc_html_e( 'Ship to ' , 'ops' ); 
+                    echo '<i class="css_flag  flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'">';
+                    echo '</i>';
+                echo '</span>';
+                echo '<i class="open-country ion-chevron-down"></i>';
+            echo '</a>';
 
-        echo '<div class="osp-contries-wrapper">';
-        echo '<select id="osp-country-field" class="osp-country-field">';
-        foreach ($countries as $code => $country){
-            $selected = ( $code === $default_country) ? 'selected="selected"' : '';
-            echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
-        }
-        echo '</select>';
-        echo '</div>'; //.osp-contrey-wrapper
-        
+            echo '<div class=" switcher-sub osp-contries-wrapper">';
+            echo '<div class="switcher-common">';
+                echo '<span class="label">Ship to</span>';
+                echo '<select id="osp-country-field" class="osp-country-field">';
+                foreach ($countries as $code => $country){
+                    $selected = ( $code === $default_country) ? 'selected="selected"' : '';
+                    echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
+                }
+                echo '</select>';
+            echo '</div>'; // .switcher-common
+            echo '</div>'; //.osp-contrey-wrapper
+
+            
+            echo '</div>';//.osp-shipping
         echo '</div>'; //.top-bar-right
         
       

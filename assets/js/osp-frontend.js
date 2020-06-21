@@ -8,6 +8,16 @@
 //    console.log( location.protocol + '//' + location.host + location.pathname );
 //console.log(ops_scripts_vars.desable_form);
 //    var scripts_vars = ops_scripts_vars;
+
+$(window).click(function() {
+//    $('.osp-shipping').toggleClass('active');
+//    $('i.open-country').toggleClass('ion-chevron-up');
+});
+$('a.switcher-info').on('click',function(e){
+    e.stopPropagation();
+    $(this).parent().toggleClass('active');
+    $('i.open-country').toggleClass('ion-chevron-up');
+});
 function formatState (state) {
   if (!state.id) {
     return state.text;
