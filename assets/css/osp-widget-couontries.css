@@ -31,7 +31,9 @@ div.osp-countries{
     border: 1px solid #ccc;
     border-bottom: 0;
     z-index: 21;
-    box-shadow: 0 -3px 5px 0 rgba(51,51,51,.3);   
+    box-shadow: 0 -3px 5px 0 rgba(51,51,51,.3);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;    
 }
 a.switcher-info{
     position: relative;
@@ -74,6 +76,7 @@ a.switcher-info{
 
 .osp-shipping.active  .switcher-sub{
     display: block;
+    height: 230px;
 }
 .switcher-sub{
     display:none;
@@ -88,11 +91,16 @@ a.switcher-info{
     z-index: 20;
     box-shadow: 0 3px 5px 0 rgba(51,51,51,.3);  
     max-width: 237px;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top-left-radius: 7px ;   
 }
 .switcher-sub .switcher-common {
     z-index: 999;
     padding: 10px 20px 15px;
-    border-bottom: 1px solid #e8e8e8;
 }
 .osp-shipping .label {
     display: block;
@@ -117,7 +125,7 @@ a.switcher-info{
  font-size:12px!important;   
 }
 .select2-container--open .select2-dropdown--below{
-    width: 189px!important;
+    /*width: 189px!important;*/
     /* border: 1px solid; */
     top: -16px!important;    
 }
