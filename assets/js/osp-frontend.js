@@ -8,11 +8,20 @@
 //    console.log( location.protocol + '//' + location.host + location.pathname );
 //console.log(ops_scripts_vars.desable_form);
 //    var scripts_vars = ops_scripts_vars;
+$(document).mouseup(function(e) {
+    
+//    console.log($(e.target).hasClass('select2-selection__arrow'));
+    var isSelect2 = $(e.target).hasClass('select2-selection__arrow');
+    var isInput = $(e.target).hasClass('select2-search__field');
+    var container = $(".osp-shipping");
 
-$(window).click(function() {
-//    $('.osp-shipping').toggleClass('active');
-//    $('i.open-country').toggleClass('ion-chevron-up');
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0 && !isSelect2 && !isInput ) {
+            $('.osp-shipping').removeClass('active');
+            $('i.open-country').removeClass('ion-chevron-up');
+    }
 });
+
 $('a.switcher-info').on('click',function(e){
     e.stopPropagation();
     $(this).parent().toggleClass('active');
