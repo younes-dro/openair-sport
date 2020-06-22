@@ -385,7 +385,7 @@ function all_cat_classes( $product_id = '') {
 add_action( 'wp' , 'ops_hide_add_to_cart' );
 function ops_hide_add_to_cart(){
     
-    if( !is_admin() && in_array( 'ali2wo/ali2wo.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ){
+    if( !is_admin() && class_exists( 'A2W_Woocommerce' ) ){
         
         $ship_to = WC()->customer->get_shipping_country();
         $ext = new A2W_Woocommerce();
