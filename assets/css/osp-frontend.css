@@ -43,19 +43,20 @@ body li.menu-item-product p.product__categories, body ul.products li.product p.p
 	display:none;
 }
 div.woocommerce-card__header > a{
-	border: 1px solid #e5e5e5;
+    border: 1px solid #999898c2!important;
     display: inline-block;
     border-radius: 4px;
     padding: 5px 10px;
-    background-color: #8b8b8b;
-    color: #fff;
-	margin-right: 4px;
-	font-size:12px;
-	position:relative;
-        margin-bottom: 4px; 
+    /* background-color: #8b8b8b; */
+    color: rgb(52, 51, 51);
+    margin-right: 4px;
+    font-size: 12px;
+    position: relative;
+    margin-bottom: 4px;    
 }
 div.woocommerce-card__header > a:hover{
-	background-color:rgb(221,24,0);
+    background-color: rgba(5, 5, 5, 0.74);
+    color: #fff;
 }
 @media (min-width: 992px){
 	.top-bar form#alg_currency_selector{

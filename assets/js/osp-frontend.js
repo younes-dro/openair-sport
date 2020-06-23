@@ -9,7 +9,7 @@
 //console.log(ops_scripts_vars.desable_form);
 //    var scripts_vars = ops_scripts_vars;
 $(document).mouseup(function(e) {
-    
+    return;
 //    console.log($(e.target).hasClass('select2-selection__arrow'));
     var isSelect2 = $(e.target).hasClass('select2-selection__arrow');
     var isInput = $(e.target).hasClass('select2-search__field');
@@ -47,33 +47,49 @@ if( !isMobile){
 $(document).ready(function(){
    $('select.osp-country-field').select2({
        templateResult: formatState
-   }); 
+   });
+//   $('select.osp-currency-field').select2();
 });   
 }
-    $('#osp-flag-wrapper').on('click', function (){
-        
-        $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
-    });
+//    $('#osp-flag-wrapper').on('click', function (){
+//        
+//        $('p.osp-country-field').toggleClass('osp-country-field-show-hide', 2000);
+//    });
     
     $('#osp-country-field').on('change',function(){
     
     var country = this.value;
     var europe = 'AD,AT,BE,CY,EE,FI,FR,GF,TF,DE,GR,GP,IE,IT,LV,LT,LU,MT,MQ,YT,MC,ME,NL,PT,RE,PM,SM,SK,SI,ES';
-    var gbp = 'IM,JE,MA,GS,GB';
+    var gbp = 'IM,JE,GS,GB';
+    var currency;
     if (europe.indexOf(country) >-1){
-        var currency = 'EUR';
+        currency = 'EUR';
     } else if( gbp.indexOf(country) >-1){
-        var currency = 'GBP';
+         currency = 'GBP';
     }else{
-        var currency = 'USD';
+        currency = 'USD';
     }
-    var url = location.protocol + '//' + location.host + location.pathname ;    
-    if (url.indexOf('?') > -1){
-   url += '&alg_currency=' + currency + '&country=' +country;
-    }else{
-        url += '?alg_currency=' + currency + '&country=' +country;
-    }
-    window.location.href = url;
+//    alert(currency);
+//    $('select.osp-currency-field')
+//     .removeAttr('selected')
+//     .filter('[value=' + currency + ']')
+//         .attr('selected', true);
+    $('select.osp-currency-field').val(currency);
+    
+
+    });
+    $('.go-contiune-btn').on('click',function(){
+        
+        var country = $('select.osp-country-field').val();
+        var currency = $('select.osp-currency-field').val();
+        
+        var url = location.protocol + '//' + location.host + location.pathname;
+        if (url.indexOf('?') > -1) {
+            url += '&currency=' + currency + '&country=' + country;
+        } else {
+            url += '?currency=' + currency + '&country=' + country;
+        }
+        window.location.href = url; 
     });
     
 

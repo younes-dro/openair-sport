@@ -1,3 +1,3 @@
-
+- Display select currency like countries
 - Add New status Orders.
  

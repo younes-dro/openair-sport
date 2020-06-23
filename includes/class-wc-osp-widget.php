@@ -11,6 +11,8 @@ class OSP_WIDGET extends WP_Widget {
             'name' => 'Openair Sport : Countries'
         );
         add_action('init', array( $this , 'set_ops_cookies') );
+        add_action('init', array ( $this, 'set_ops_cookies_currency' ) );
+        add_action('init', array ( $this , 'load_currency' ));
         parent::__construct('osp_widget', '', $params);
     }
 
@@ -18,7 +20,10 @@ class OSP_WIDGET extends WP_Widget {
 
         extract($instance);
     }
-
+    function load_currency(){
+        require_once 'class-wc-osp-currency.php';
+//        print_r (get_woocommerce_currency()  );
+    }
     function widget($args, $instance) {
         
         global $woocommerce;
@@ -32,6 +37,14 @@ class OSP_WIDGET extends WP_Widget {
         } else{
             $default_country = $this->getUserGEO();
         }
+        
+        if ( isset ( $_COOKIE['currency_user'] ) ){
+            $default_currency =  $_COOKIE['currency_user'];
+        }else if ( isset ( $_GET['currency'])){
+            $default_currency = $_GET['currency'];
+        }else{
+            $default_currency = "USD";
+        }
 
         echo '<div class="top-bar-right osp-countries">';
             echo '<div class="osp-shipping">';
@@ -41,18 +54,50 @@ class OSP_WIDGET extends WP_Widget {
                     echo '<i class="css_flag  flag-icon-squared osp-flag osp-flag-icon-background flag-icon-'.strtolower($default_country).'">';
                     echo '</i>';
                 echo '</span>';
+                echo '<span class="split">/</span>';
+                echo '<span class="currency">'.$default_currency.'</span>';                
                 echo '<i class="open-country ion-chevron-down"></i>';
             echo '</a>';
 
             echo '<div class=" switcher-sub osp-contries-wrapper">';
             echo '<div class="switcher-common">';
-                echo '<span class="label">Ship to</span>';
-                echo '<select id="osp-country-field" class="osp-country-field">';
-                foreach ($countries as $code => $country){
-                    $selected = ( $code === $default_country) ? 'selected="selected"' : '';
-                    echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
+            
+                // Switcher Ship to
+                echo '<div class="switcher-shipto">';
+                    echo '<span class="label">Ship to</span>';
+                    echo '<select id="osp-country-field" class="osp-country-field">';
+                    foreach ($countries as $code => $country){
+                        $selected = ( $code === $default_country) ? 'selected="selected"' : '';
+                        echo '<option '.$selected.'  value="'.$code.'">'.$country.'</option>';
+                    }
+                    echo '</select>';
+                echo '</div>';// .switcher-shipto
+                
+                // Switcher Currency 
+                 
+//                $selected = ( $code === $default_country) ? 'selected="selected"' : '';
+//                print_r($default_currency);
+                if( $default_currency ==="USD"){
+                    
+                    $usd = 'selected="selected"';
+                }else if( $default_currency === "EUR"){
+                    $eur = 'selected="selected"';
+                }else if ( $default_currency === "GBP"){
+                    $gbp = 'selected="selected"';
                 }
-                echo '</select>';
+                echo '<div class="switcher-currency">';
+                    echo '<span class="label">Currency</span>';
+                    echo '<select id="ops-currency-field" class="osp-currency-field">';
+                        echo '<option '.$usd.' value="USD" >USD ( US Dollar )</option>';
+                        echo '<option '.$eur.'value="EUR" >EUR( Euro )</option>';
+                        echo '<option '.$gbp.'value="GBP" >GBP( Pound Sterling )</option>';
+                    echo '</select>';
+                echo '</div>'; // .switcher-currency
+                
+                echo '<div class="switcher-btn">';
+                echo '<button type="button" data-role="save" class="ui-button ui-button-primary go-contiune-btn">Save</button>';
+                echo '</div>';
+                
             echo '</div>'; // .switcher-common
             echo '</div>'; //.osp-contrey-wrapper
 
@@ -96,6 +141,22 @@ class OSP_WIDGET extends WP_Widget {
             // Update the customer shipping country 
             WC_OSP_Helper::set_shipping_counry( $c );            
         }
+    }
+    public function set_ops_cookies_currency () {
+        
+        if ( !is_admin() ){
+            if ( isset( $_GET['currency'] ) ){
+                $c = $_GET['currency'] ;
+            }
+            else if( isset( $_COOKIE['currency_user'] ) ){
+                $c = $_COOKIE['currency_user'];
+            }else{
+                $c = "USD";
+            }
+            setcookie( 'currency_user', $c ,  time()+60*60*24*30 , '/' ); 
+            $_COOKIE['currency_user'] = $c;            
+        }
+        
     }
     
     public function get_ops_cookies( ) {
