@@ -50,7 +50,7 @@ require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-freeshipping-w
 require_once plugin_dir_path( __FILE__) . '/includes/class-wc-osp-frontend.php';
 
 /**
- * WC_Custom_Variable_Products class.
+ * WC_OSP class.
  * 
  * The main instance of the plugin.
  * 
@@ -232,7 +232,7 @@ class WC_OSP{
         }
         
 	/**
-	 * Displays any admin notices added with \WC_Custom_Variable_Products::add_admin_notice()
+	 * Displays any admin notices added with \WC_OSP::add_admin_notice()
 	 *
 	 * @since 1.0.0
 	 */

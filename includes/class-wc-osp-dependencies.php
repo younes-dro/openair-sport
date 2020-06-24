@@ -89,7 +89,7 @@ class WC_OSP_Dependencies {
         
         return sprintf(
                 esc_html__( '%s is not active, as it requires WordPress version %s or higher. Please %supdate WordPress &raquo;%s', 'osp')
-				,'<strong>' . WC_Custom_Variable_Products()->plugin_name . '</strong>',
+				,'<strong>' . WC_OSP()->plugin_name. '</strong>',
 				self::MINIMUM_WP_VERSION,
 				'<a href="' . esc_url( admin_url( 'update-core.php' ) ) . '">', '</a>'
 			);
@@ -112,7 +112,7 @@ class WC_OSP_Dependencies {
         
         return sprintf(
                 esc_html__( '%s is not active, as it requires WooCommerce version %s or higher. Please %supdate WooCommerce &raquo;%s', 'woocommerce-custom-variable-products')
-				,'<strong>' . WC_Custom_Variable_Products()->plugin_name . '</strong>',
+				,'<strong>' . WC_OSP()->plugin_name . '</strong>',
 				self::MINIMUM_WC_VERSION,
 				'<a href="' . esc_url( admin_url( 'update-core.php' ) ) . '">', '</a>'
 			);
