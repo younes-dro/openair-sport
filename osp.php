@@ -330,12 +330,6 @@ function get_parent_terms( $term ) {
         
     if ($term->parent && $term->parent != 1946) {
         $term = get_term_by( "id", $term->parent, "product_cat" );
-//        echo '<pre>';
-//        var_dump($term);
-//        echo '</pre>';
-//        return $term;
-//        $term->term_id === 1946;
-//        return
             if ( $term->parent > 0 ) {
                get_parent_terms( $term );
             } else return $term;
@@ -366,38 +360,11 @@ function all_cat_classes( $product_id = '') {
 
         return $cats;
     } 
-//    add_action('init',function(){
-//    var_dump( WC_OSP_Helper::get_shipping_counry() );    
-//    var_dump( WC_OSP_Helper::get_billing_country() ); 
-//    
-//    });
-    
-//    add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
-//    
-//    function custom_override_checkout_fields ( $fields  ) {
-//        
-//        echo "<pre>";
-//        print_r( $fields['shipping']['shipping_country'] );
-//        echo "</pre>";
-//    }
+
     
 
 
-//add_action('init', function(){
-//    if ( ! class_exists( 'Alg_WC_Currency_Switcher' ) ) {
-//        return;
-//    }
-//    global $product;
-//    $price = get_post_meta( get_the_ID(), '_regular_price', true);
-//   $data =  get_post_meta( 37708, '_a2w_shipping_data', true );
-//   echo '<pre>';
-//   var_dump($data);
-//    echo '</pre>';
-//    $converted_price = alg_get_product_price_by_currency( $price, alg_get_current_currency_code(), $product, true );
-//    $converted_price_formatted = wc_price( $converted_price );
-//    echo "<h1>{$converted_price}</h1>";
-//    echo "<h1>{$converted_price_formatted}</h1>";
-//});
+
 
 add_filter( 'woocommerce_cart_shipping_method_full_label', 'osp_add_0_to_shipping_label', 10, 2 );
    
